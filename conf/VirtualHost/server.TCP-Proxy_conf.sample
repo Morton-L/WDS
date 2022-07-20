@@ -1,0 +1,15 @@
+upstream server_name {
+    server 10.6.16.10:7000;
+    #server 127.0.0.1:7000;
+}
+server {
+    listen 7000;
+    listen 7000 udp;
+    proxy_pass server_name;
+
+    # ----- Log Config - Start -----
+    access_log  conf/VirtualHost/your_server_name/logs/your_server_name.access.log  main;
+    error_log   conf/VirtualHost/your_server_name/logs/your_server_name.error.log;
+    # ----- Log Config - END -----
+
+}
